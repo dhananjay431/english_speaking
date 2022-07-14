@@ -1,93 +1,115 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bootstrap demo</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
     <style>
-        :root {
-            --main-bg-color: #000000;
-            --main-txt-color: #ffffff;
-        }
+      :root {
+        --main-bg-color: #000000;
+        --main-txt-color: #ffffff;
+      }
 
-        .table-bg-color {
-            background-color: var(--main-bg-color);
-        }
-        .table-txt-color {
-            color:var(--main-txt-color);
-        }
+      .table-bg-color {
+        background-color: var(--main-bg-color);
+      }
+
+      .table-txt-color {
+        color: var(--main-txt-color);
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <div class="row">
+      <div class="col-12 col-lg-8 col-sm-12 col-md-8">
+        <label for="formFile" class="form-label">Upload Only .srt file</label>
+        <input class="form-control" type="file" id="file" />
+      </div>
+      <div class="col-6 col-lg-2 col-sm-6 col-md-2">
+        <label for="exampleColorInput1" class="form-label">Bg Color</label
+        ><input
+          type="color"
+          class="form-control form-control-color exampleColorInput"
+          value="#000000"
+          title="Choose your color"
+          aria-value="--main-bg-color"
+        />
+      </div>
 
-
-
-
-
-<div class="row">
-
-<div class="col-12 col-lg-8 col-sm-12 col-md-8">
-    <label for="formFile" class="form-label">Upload Only .srt file</label>
-    <input class="form-control" type="file" id="file">
-</div>
-    <div class="col-6 col-lg-2 col-sm-6 col-md-2">
-<label for="exampleColorInput1" class="form-label">Bg Color</label>
-<input type="color" class="form-control form-control-color exampleColorInput"
-       value="#000000"
-       title="Choose your color"
-aria-value="--main-bg-color">
+      <div class="col-6 col-md-lg-2 col-sm-6 col-md-2">
+        <label for="exampleColorInput2" class="form-label">Text Color</label>
+        <input
+          type="color"
+          class="form-control form-control-color exampleColorInput"
+          value="#ffffff"
+          title="Choose your color"
+          aria-value="--main-txt-color"
+        />
+      </div>
     </div>
 
-    <div class="col-6 col-md-lg-2 col-sm-6 col-md-2">
-<label for="exampleColorInput2" class="form-label">Text Color</label>
-<input type="color" class="form-control form-control-color exampleColorInput"
-       value="#ffffff"
-       title="Choose your color"
-aria-value="--main-txt-color">
-    </div>
-</div>
+    <div id="show"></div>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      if (localStorage.str !== undefined) {
+        $("#show").html(localStorage.str);
+      }
 
-<div id="show"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
-<script>
-    function readFile(file) {
+      function readFile(file) {
         return new Promise((a, b) => {
-            var fr = new FileReader();
-            fr.onload = function () {
-                a(fr.result);
-            }
-            fr.readAsText(file);
-        })
-    }
+          var fr = new FileReader();
+          fr.onload = function () {
+            a(fr.result);
+          };
+          fr.readAsText(file);
+        });
+      }
 
-    $(".exampleColorInput").change(function (ev) {
+      $(".exampleColorInput").change(function (ev) {
+        document.documentElement.style.setProperty(
+          ev.target.getAttribute("aria-value"),
+          ev.target.value
+        );
+      });
 
-        document.documentElement.style.setProperty(ev.target.getAttribute("aria-value"), ev.target.value);
-    })
-
-    $("#file").change(function (ev) {
-        readFile(ev.target.files[0]).then(resp => {
-            debugger;
-            var data = resp.split('\n').filter(d => !d.match(/^[0-9]/))
-                .map(d => d.replace("\r", '<br>'))
-                .filter(d => d != '<br>');
-            var str = `<table class="table w-100 table-bg-color">${data.map(d => `<tr class="text-center table-txt-color"><td>${d}</td></tr>`).join('')}</table>`;
-            $("#show").html(str);
-        })
-
-
-    })
-</script>
-</body>
+      $("#file").change(function (ev) {
+        name = ev.target.files[0].name;
+        readFile(ev.target.files[0]).then((resp) => {
+          debugger;
+          var data = resp
+            .split("\n")
+            .filter((d) => !d.match(/^[0-9]/))
+            .map((d) => d.replace("\r", "<br>"))
+            .filter((d) => d != "<br>");
+          var str = `<table class="table w-100 table-bg-color"> <tr><td class="text-center table-txt-color h1"colspan="2">${name}</td></tr> ${data
+            .map(
+              (d, i) =>
+                `<tr class="text-center table-txt-color"><td>${i}</td><td>${d}</td></tr>`
+            )
+            .join("")}</table>`;
+          localStorage.str = str;
+          $("#show").html(str);
+        });
+      });
+    </script>
+  </body>
 </html>

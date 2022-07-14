@@ -100,7 +100,7 @@
             .filter((d) => !d.match(/^[0-9]/))
             .map((d) => d.replace("\r", "<br>"))
             .filter((d) => d != "<br>");
-          var str = `<table class="table w-100 table-bg-color"> <tr><td class="text-center table-txt-color "colspan="2">${name}</td></tr> ${data
+          var str = `<table class="table w-100 table-bg-color"> <tr><td class="text-center table-txt-color" colspan="2">${name}</td></tr> ${data
             .map(
               (d, i) =>
                 `<tr class="text-center table-txt-color"><td>${i}</td><td>${d}</td></tr>`
